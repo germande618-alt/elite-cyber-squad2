@@ -282,7 +282,7 @@ label {
   background:
     linear-gradient(90deg, rgba(5, 8, 13, 0.93) 0%, rgba(5, 8, 13, 0.58) 40%, rgba(5, 8, 13, 0.08) 100%),
     linear-gradient(180deg, rgba(5, 8, 13, 0.08), rgba(5, 8, 13, 0.28)),
-    url("assets/hero-fortnite.png");
+    url("/assets/hero-fortnite.png");
   background-size: cover;
   background-position: center;
 }
