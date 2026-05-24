@@ -616,7 +616,7 @@ label {
   border-radius: var(--radius);
   background:
     linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.3)),
-    var(--thumb-image, url("assets/pattern-gold.png"));
+    var(--thumb-image, url("/assets/pattern-gold.png"));
   background-size: cover;
   background-position: center;
 }
