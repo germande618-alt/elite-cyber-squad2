@@ -272,7 +272,7 @@ label {
   background:
     linear-gradient(90deg, rgba(5, 8, 13, 0.96) 0%, rgba(5, 8, 13, 0.68) 42%, rgba(5, 8, 13, 0.22) 100%),
     linear-gradient(180deg, rgba(5, 8, 13, 0.1), rgba(5, 8, 13, 0.42)),
-    url("assets/hero-cs2.png");
+    url("/assets/hero-cs2.png");
   background-size: cover;
   background-position: center;
   box-shadow: var(--shadow);
