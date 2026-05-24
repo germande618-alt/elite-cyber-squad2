@@ -1,0 +1,112 @@
+window.ecsApi = (() => {
+  const db = {
+    user: null,
+    tournaments: [
+      {
+        id: 1,
+        game: "CS2",
+        name: "ECS 2v2 Night Cup #12",
+        mode: "2v2",
+        date: "24 ДЕК 19:00",
+        slots: "16/32",
+        prize: "EUR 250",
+        code: "ECS-2V2-12",
+        status: "Идет",
+        image: "assets/thumb-cs2-night.png",
+      },
+      {
+        id: 2,
+        game: "CS2",
+        name: "ECS Weekly Cup",
+        mode: "2v2",
+        date: "25 ДЕК 20:00",
+        slots: "32/64",
+        prize: "EUR 500",
+        code: "ECS-WEEKLY-25",
+        status: "Открыт",
+        image: "assets/thumb-cs2-weekly.png",
+      },
+      {
+        id: 3,
+        game: "Fortnite",
+        name: "ECS Duo Cup",
+        mode: "Duos",
+        date: "22 ДЕК 19:00",
+        slots: "32/50",
+        prize: "EUR 350",
+        code: "7844-2231-1290",
+        status: "Открыт",
+        image: "assets/thumb-fortnite-duo.png",
+      },
+      {
+        id: 4,
+        game: "Fortnite",
+        name: "ECS Solo Showdown",
+        mode: "Solo",
+        date: "23 ДЕК 20:00",
+        slots: "45/100",
+        prize: "EUR 150",
+        code: "ECS-SOLO-23",
+        status: "Открыт",
+        image: "assets/thumb-fortnite-solo.png",
+      },
+    ],
+    players: [],
+    matches: [
+      ["ECS 2v2 Night Cup #11", "Mirage", "13 : 7", "1.45"],
+      ["ECS 2v2 Daily Cup", "Inferno", "9 : 13", "1.12"],
+      ["ECS Community Cup", "Dust2", "13 : 8", "1.67"],
+      ["ECS Weekly Cup", "Vertigo", "7 : 13", "0.98"],
+    ],
+    bracket: [
+      {
+        id: 1,
+        round: "Quarter-finals",
+        teamA: "akkerman & ghost",
+        teamB: "qwerty & d3m0n",
+        scoreA: 13,
+        scoreB: 7,
+        status: "Finished",
+      },
+      {
+        id: 2,
+        round: "Quarter-finals",
+        teamA: "v1per & st0rm",
+        teamB: "ZLOY & b1t",
+        scoreA: 9,
+        scoreB: 13,
+        status: "Finished",
+      },
+      {
+        id: 3,
+        round: "Semi-finals",
+        teamA: "akkerman & ghost",
+        teamB: "ZLOY & b1t",
+        scoreA: 13,
+        scoreB: 11,
+        status: "Finished",
+      },
+      {
+        id: 4,
+        round: "Final",
+        teamA: "akkerman & ghost",
+        teamB: "TBD",
+        scoreA: 0,
+        scoreB: 0,
+        status: "Scheduled",
+      },
+    ],
+  };
+
+  function clone(value) {
+    return structuredClone(value);
+  }
+
+  function getInitialData() {
+    return clone(db);
+  }
+
+  return {
+    getInitialData,
+  };
+})();

@@ -1,0 +1,945 @@
+:root {
+  color-scheme: dark;
+  --bg: #05080d;
+  --panel: rgba(15, 20, 28, 0.86);
+  --panel-2: rgba(21, 27, 37, 0.92);
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.15);
+  --text: #f7f7f8;
+  --muted: #9aa2b2;
+  --accent: #f3b51b;
+  --accent-rgb: 243, 181, 27;
+  --good: #29df73;
+  --bad: #ff4d4d;
+  --radius: 8px;
+  --shadow: 0 18px 70px rgba(0, 0, 0, 0.38);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 70% 10%, rgba(var(--accent-rgb), 0.1), transparent 28%),
+    linear-gradient(135deg, #060a10 0%, #090e16 46%, #05070a 100%);
+  color: var(--text);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 256px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.app-shell[data-game="fortnite"] {
+  --accent: #8f3cff;
+  --accent-rgb: 143, 60, 255;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 20px;
+  border-right: 1px solid var(--line);
+  background: rgba(7, 11, 17, 0.92);
+  backdrop-filter: blur(18px);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.brand,
+.topbar,
+.top-nav,
+.top-actions,
+.account-button,
+.section-head,
+.page-head,
+.leader-row,
+.match-row,
+.player-row,
+.mobile-nav,
+.mode-switch {
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  min-height: 54px;
+}
+
+.brand-logo {
+  width: 207px;
+  height: auto;
+  display: block;
+}
+
+.brand span,
+.mini-profile span,
+.season-card span,
+.muted,
+.leader-meta,
+.player-row span,
+.stat-card span,
+.identity-grid span,
+.external-card span,
+.match-meta,
+label {
+  color: var(--muted);
+}
+
+.side-nav {
+  display: grid;
+  gap: 7px;
+}
+
+.side-link,
+.mobile-link,
+.top-link {
+  background: transparent;
+  border-radius: var(--radius);
+  color: #c9ced8;
+}
+
+.side-link {
+  width: 100%;
+  padding: 13px 14px;
+  text-align: left;
+}
+
+.side-link.active,
+.side-link.current-game,
+.side-link:hover,
+.mobile-link.active,
+.top-link.active {
+  background: rgba(var(--accent-rgb), 0.16);
+  color: var(--text);
+}
+
+.side-link.current-game {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.season-card,
+.mini-profile,
+.panel,
+.tournament-card,
+.stat-card,
+.match-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.season-card {
+  margin-top: auto;
+  padding: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+.season-card strong {
+  font-size: 1.7rem;
+}
+
+.season-card button,
+.ghost-action,
+.secondary-action {
+  border: 1px solid rgba(var(--accent-rgb), 0.55);
+  background: rgba(var(--accent-rgb), 0.1);
+  color: var(--accent);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  font-weight: 800;
+}
+
+.mini-profile {
+  padding: 14px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+}
+
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--accent-rgb), 0.7);
+  object-fit: cover;
+}
+
+.avatar.small {
+  width: 34px;
+  height: 34px;
+  font-size: 0.82rem;
+}
+
+.xp-bar {
+  grid-column: 1 / -1;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.xp-bar span {
+  display: block;
+  width: 64%;
+  height: 100%;
+  background: var(--accent);
+}
+
+.main {
+  min-width: 0;
+  padding: 0 22px 34px;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 72px;
+  background: rgba(5, 8, 13, 0.82);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--line);
+}
+
+.top-nav {
+  gap: 8px;
+}
+
+.top-link {
+  padding: 10px 12px;
+}
+
+.top-actions {
+  gap: 10px;
+}
+
+.icon-button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.account-button {
+  gap: 9px;
+  min-width: 158px;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+}
+
+.hero {
+  position: relative;
+  min-height: 278px;
+  margin-top: 18px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(90deg, rgba(5, 8, 13, 0.96) 0%, rgba(5, 8, 13, 0.68) 42%, rgba(5, 8, 13, 0.22) 100%),
+    linear-gradient(180deg, rgba(5, 8, 13, 0.1), rgba(5, 8, 13, 0.42)),
+    url("assets/hero-cs2.png");
+  background-size: cover;
+  background-position: center;
+  box-shadow: var(--shadow);
+}
+
+.app-shell[data-game="fortnite"] .hero {
+  background:
+    linear-gradient(90deg, rgba(5, 8, 13, 0.93) 0%, rgba(5, 8, 13, 0.58) 40%, rgba(5, 8, 13, 0.08) 100%),
+    linear-gradient(180deg, rgba(5, 8, 13, 0.08), rgba(5, 8, 13, 0.28)),
+    url("assets/hero-fortnite.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(90deg, transparent, black 42%, black);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+  padding: 46px 36px;
+}
+
+.game-kicker {
+  margin: 0 0 16px;
+  font-size: clamp(2.3rem, 7vw, 4.1rem);
+  line-height: 0.85;
+  font-weight: 950;
+  font-style: italic;
+  letter-spacing: 0;
+}
+
+.hero h1,
+.page-head h1 {
+  margin: 0;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.hero h1 {
+  max-width: 370px;
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  line-height: 1.45;
+  font-weight: 650;
+}
+
+.page-head h1 {
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+}
+
+.hero p {
+  color: #e9edf5;
+  font-size: 1.03rem;
+  line-height: 1.55;
+}
+
+.primary-action {
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--accent), rgba(var(--accent-rgb), 0.74));
+  color: #05080d;
+  padding: 12px 18px;
+  font-weight: 950;
+  box-shadow: 0 12px 30px rgba(var(--accent-rgb), 0.25);
+}
+
+.hero-art {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.energy-core {
+  position: absolute;
+  right: 80px;
+  bottom: -120px;
+  width: 430px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.36), transparent 64%);
+  filter: blur(2px);
+}
+
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.stat-card {
+  padding: 18px;
+}
+
+.stat-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.8rem;
+  color: var(--accent);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.12fr 0.78fr 1.4fr;
+  gap: 14px;
+}
+
+.panel {
+  padding: 18px;
+}
+
+.section-head,
+.page-head {
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.section-head h2,
+.match-card h3,
+.tournament-card h3 {
+  margin: 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.section-head h2 span {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.player-stat-panel {
+  min-height: 300px;
+}
+
+.rank-block {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.rank-badge {
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #05080d;
+  background: var(--accent);
+  font-weight: 950;
+}
+
+.rank-block strong {
+  display: block;
+  color: var(--accent);
+  font-size: 1.7rem;
+}
+
+.mini-stats,
+.identity-grid,
+.external-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.mini-stats div,
+.identity-grid div,
+.external-grid div {
+  min-width: 0;
+  padding: 12px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.mini-stats strong,
+.identity-grid strong,
+.external-grid strong {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.chart-line {
+  height: 92px;
+  margin-top: 20px;
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(to top, rgba(var(--accent-rgb), 0.18), transparent 70%),
+    linear-gradient(154deg, transparent 0 12%, var(--accent) 13% 14%, transparent 15% 26%, var(--accent) 27% 28%, transparent 29% 44%, var(--accent) 45% 46%, transparent 47% 62%, var(--accent) 63% 64%, transparent 65% 100%);
+  clip-path: polygon(0 80%, 14% 55%, 28% 46%, 42% 48%, 56% 30%, 72% 24%, 86% 26%, 100% 8%, 100% 100%, 0 100%);
+}
+
+.leader-list,
+.match-list,
+.upcoming-list,
+.player-results,
+.admin-tournament-list {
+  display: grid;
+  gap: 9px;
+}
+
+.leader-row,
+.match-row,
+.player-row {
+  width: 100%;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  background: transparent;
+  text-align: left;
+}
+
+.leader-row:nth-child(2),
+.leader-row:hover,
+.player-row.active,
+.player-row:hover {
+  background: rgba(var(--accent-rgb), 0.14);
+}
+
+.leader-rank {
+  width: 28px;
+  color: var(--accent);
+  font-weight: 950;
+}
+
+.leader-main {
+  flex: 1;
+}
+
+.leader-points {
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.live-pill,
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  border-radius: 999px;
+  padding: 5px 10px;
+  background: rgba(var(--accent-rgb), 0.14);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.tournament-panel {
+  grid-row: span 2;
+}
+
+.bracket-preview,
+.bracket-board {
+  display: grid;
+  gap: 12px;
+}
+
+.bracket-preview {
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+}
+
+.bracket-column {
+  display: grid;
+  gap: 9px;
+}
+
+.bracket-match,
+.match-card {
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.bracket-match div,
+.match-card div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.score-win {
+  color: var(--accent);
+  font-weight: 950;
+}
+
+.score-loss {
+  color: var(--muted);
+}
+
+.winner-card {
+  padding: 18px;
+  border: 1px solid rgba(var(--accent-rgb), 0.35);
+  border-radius: var(--radius);
+  background: rgba(var(--accent-rgb), 0.1);
+  text-align: center;
+}
+
+.match-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) 90px 70px 70px;
+}
+
+.result-win {
+  color: var(--good);
+}
+
+.result-loss {
+  color: var(--bad);
+}
+
+.danger-action {
+  border-color: rgba(255, 77, 77, 0.55);
+  color: var(--bad);
+  background: rgba(255, 77, 77, 0.08);
+}
+
+.admin-list-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.upcoming-panel {
+  grid-column: span 2;
+}
+
+.upcoming-item,
+.quick-action {
+  display: grid;
+  grid-template-columns: 76px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.thumb {
+  height: 58px;
+  border-radius: var(--radius);
+  background:
+    linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.3)),
+    var(--thumb-image, url("assets/pattern-gold.png"));
+  background-size: cover;
+  background-position: center;
+}
+
+.code-box {
+  padding: 16px;
+  border: 1px solid rgba(var(--accent-rgb), 0.5);
+  border-radius: var(--radius);
+  background: rgba(var(--accent-rgb), 0.08);
+  text-align: center;
+}
+
+.code-box strong {
+  display: block;
+  margin: 10px 0;
+  color: var(--accent);
+  font-size: clamp(1.4rem, 4vw, 2.1rem);
+}
+
+.condition-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.page-head {
+  padding-top: 24px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--accent);
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.mode-switch {
+  gap: 8px;
+}
+
+.mode-button {
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  background: var(--panel-2);
+}
+
+.tournament-grid,
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tournament-card {
+  padding: 16px;
+}
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.secondary-action {
+  flex: 1;
+}
+
+.players-layout {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: 14px;
+}
+
+.search-input,
+input,
+select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #090f17;
+  color: var(--text);
+  padding: 12px;
+}
+
+.search-input {
+  max-width: 420px;
+}
+
+.player-row {
+  border: 1px solid transparent;
+}
+
+.player-details-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.external-card {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.leaderboard-panel .leader-row {
+  display: grid;
+  grid-template-columns: 54px 1fr 120px 120px 100px;
+}
+
+.bracket-board {
+  grid-template-columns: repeat(4, minmax(240px, 1fr));
+  align-items: start;
+  overflow-x: auto;
+}
+
+.match-card {
+  min-height: 172px;
+}
+
+.match-card h3 {
+  margin-bottom: 14px;
+}
+
+.admin-form {
+  display: grid;
+  gap: 12px;
+}
+
+label {
+  display: grid;
+  gap: 7px;
+  font-weight: 800;
+}
+
+.toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 10;
+  transform: translateY(140%);
+  max-width: 360px;
+  padding: 13px 15px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel-2);
+  box-shadow: var(--shadow);
+  transition: transform 0.22s ease;
+}
+
+.toast.show {
+  transform: translateY(0);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(14px);
+}
+
+.modal-panel {
+  width: min(100%, 460px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel-2);
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.admin-lock {
+  max-width: 460px;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 1220px) {
+  .dashboard-grid,
+  .tournament-grid,
+  .admin-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tournament-panel,
+  .upcoming-panel {
+    grid-column: span 1;
+    grid-row: auto;
+  }
+
+  .stat-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .main {
+    padding: 0 14px 94px;
+  }
+
+  .topbar {
+    position: static;
+    min-height: auto;
+    padding: 14px 0;
+  }
+
+  .top-nav {
+    display: none;
+  }
+
+  .dashboard-grid,
+  .tournament-grid,
+  .admin-grid,
+  .players-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-strip,
+  .mini-stats,
+  .identity-grid,
+  .external-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero {
+    min-height: 340px;
+  }
+
+  .hero-copy {
+    padding: 34px 22px;
+  }
+
+  .mobile-nav {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    z-index: 7;
+    justify-content: space-between;
+    gap: 4px;
+    padding: 6px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: rgba(8, 12, 18, 0.92);
+    backdrop-filter: blur(18px);
+  }
+
+  .mobile-link {
+    flex: 1;
+    padding: 10px 6px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .top-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .account-button {
+    min-width: 0;
+  }
+
+  .stat-strip,
+  .mini-stats,
+  .identity-grid,
+  .external-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .match-row,
+  .leaderboard-panel .leader-row {
+    grid-template-columns: 42px 1fr 86px;
+  }
+
+  .match-row .hide-mobile,
+  .leaderboard-panel .hide-mobile {
+    display: none;
+  }
+}

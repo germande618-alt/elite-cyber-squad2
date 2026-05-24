@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ECS - Elite Cyber Squad</title>
+    <meta
+      name="description"
+      content="ECS esports community platform for Fortnite and CS2 tournaments."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell" data-game="cs2">
+      <aside class="sidebar">
+        <div class="brand">
+          <img id="brandLogo" class="brand-logo" src="assets/logo-gold.png" alt="ECS Elite Cyber Squad" />
+        </div>
+
+        <nav class="side-nav" aria-label="Основная навигация">
+          <button class="side-link active" data-view="dashboard">Главная</button>
+          <button class="side-link" data-game-switch="fortnite">Fortnite</button>
+          <button class="side-link current-game" data-game-switch="cs2">CS2</button>
+          <button class="side-link" data-view="tournaments">Турниры</button>
+          <button class="side-link" data-view="leaderboard">Таблица лидеров</button>
+          <button class="side-link" data-view="matches">Матчи</button>
+          <button class="side-link" data-view="admin">Админ</button>
+        </nav>
+
+        <section class="season-card">
+          <span>Сезон 1</span>
+          <strong>24 дня</strong>
+          <button data-view="tournaments">Подробнее</button>
+        </section>
+
+        <section class="mini-profile">
+          <img class="avatar" src="assets/avatar-akkerman.png" alt="akkerman" />
+          <div>
+            <strong id="miniProfileName">Гость</strong>
+            <span id="miniProfileLevel">Нет аккаунта</span>
+          </div>
+          <div class="xp-bar"><span></span></div>
+          <small id="miniProfileXp">0 / 7500 XP</small>
+        </section>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <nav class="top-nav" aria-label="Верхняя навигация">
+            <button class="top-link active" data-view="dashboard">Главная</button>
+            <button class="top-link" data-view="tournaments">Турниры</button>
+            <button class="top-link" data-view="leaderboard">Таблица лидеров</button>
+            <button class="top-link" data-view="matches">Матчи</button>
+          </nav>
+
+          <div class="top-actions">
+            <button class="icon-button" aria-label="Уведомления">!</button>
+            <button class="icon-button" aria-label="Сообщения">[]</button>
+            <button class="account-button" id="authButton">
+              <img class="avatar small" src="assets/avatar-akkerman.png" alt="akkerman" />
+              <strong id="accountName">Войти</strong>
+            </button>
+          </div>
+        </header>
+
+        <section class="view active" id="dashboard">
+          <section class="hero">
+            <div class="hero-copy">
+              <p class="game-kicker" id="heroGame">CS2</p>
+              <h1 id="heroTitle">Сражайся в 2v2 турнирах ECS</h1>
+              <p id="heroText">Побеждай, поднимай рейтинг и попадай в сезонный финал Elite Cyber Squad.</p>
+              <button class="primary-action" id="quickJoin">Играть сейчас</button>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+              <div class="energy-core"></div>
+            </div>
+          </section>
+
+          <section class="stat-strip" id="statStrip"></section>
+
+          <div class="dashboard-grid">
+            <section class="panel player-stat-panel">
+              <div class="section-head">
+                <h2>Моя статистика</h2>
+                <select id="seasonSelect" aria-label="Сезон">
+                  <option>Сезон 1</option>
+                  <option>Сезон 0</option>
+                </select>
+              </div>
+              <div id="myStats"></div>
+            </section>
+
+            <section class="panel">
+              <div class="section-head">
+                <h2>Лидерборд <span id="leaderboardTitle">(CS2 2v2)</span></h2>
+                <button class="ghost-action" data-view="leaderboard">Полный</button>
+              </div>
+              <div class="leader-list" id="leaderList"></div>
+            </section>
+
+            <section class="panel tournament-panel">
+              <div class="section-head">
+                <h2>Текущий турнир</h2>
+                <span class="live-pill">Идет</span>
+              </div>
+              <div id="featuredTournament"></div>
+            </section>
+
+            <section class="panel">
+              <div class="section-head">
+                <h2>Последние матчи</h2>
+                <button class="ghost-action" data-view="matches">Все матчи</button>
+              </div>
+              <div class="match-list" id="recentMatches"></div>
+            </section>
+
+            <section class="panel upcoming-panel">
+              <div class="section-head">
+                <h2>Ближайшие турниры</h2>
+                <button class="ghost-action" data-view="tournaments">Все турниры</button>
+              </div>
+              <div class="upcoming-list" id="upcomingList"></div>
+            </section>
+
+            <section class="panel quick-panel">
+              <div class="section-head">
+                <h2 id="codePanelTitle">Код комнаты</h2>
+              </div>
+              <div id="codePanel"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="tournaments">
+          <div class="page-head">
+            <div>
+              <p class="eyebrow">ECS cups</p>
+              <h1>Турниры</h1>
+            </div>
+            <div class="mode-switch">
+              <button class="mode-button" data-game-switch="cs2">CS2</button>
+              <button class="mode-button" data-game-switch="fortnite">Fortnite</button>
+            </div>
+          </div>
+          <div class="tournament-grid" id="tournamentGrid"></div>
+        </section>
+
+        <section class="view" id="leaderboard">
+          <div class="page-head">
+            <div>
+              <p class="eyebrow">Season ranking</p>
+              <h1>Таблица лидеров</h1>
+            </div>
+          </div>
+          <div class="panel leaderboard-panel" id="leaderboardTable"></div>
+        </section>
+
+        <section class="view" id="matches">
+          <div class="page-head">
+            <div>
+              <p class="eyebrow">CS2 bracket</p>
+              <h1>2v2 матчи</h1>
+            </div>
+          </div>
+          <div class="bracket-board" id="bracketBoard"></div>
+        </section>
+
+        <section class="view" id="admin">
+          <div class="page-head">
+            <div>
+              <p class="eyebrow">Control room</p>
+              <h1>Админ-панель ECS</h1>
+            </div>
+          </div>
+          <section class="panel admin-lock" id="adminLock">
+            <div class="section-head">
+              <h2>Вход в админку</h2>
+            </div>
+            <form class="admin-form" id="adminLoginForm">
+              <label>Пароль <input name="password" type="password" placeholder="Введите пароль" required /></label>
+              <button class="primary-action" type="submit">Войти</button>
+            </form>
+          </section>
+
+          <div class="admin-grid hidden" id="adminContent">
+            <section class="panel">
+              <div class="section-head">
+                <h2>Опубликовать турнир</h2>
+              </div>
+              <form class="admin-form" id="adminForm">
+                <label>Название <input name="name" value="ECS 2v2 Night Cup #13" required /></label>
+                <label>
+                  Игра
+                  <select name="game">
+                    <option>CS2</option>
+                    <option>Fortnite</option>
+                  </select>
+                </label>
+                <label>Дата <input name="date" value="26 ДЕК 20:00" required /></label>
+                <label>Приз <input name="prize" value="EUR 250 + ECS points" required /></label>
+                <label>Код <input name="code" value="ECS-2V2-13" required /></label>
+                <label>
+                  Статус
+                  <select name="status">
+                    <option value="Открыт">Открыт</option>
+                    <option value="Идет">Идет</option>
+                    <option value="Скрыт">Скрыт</option>
+                  </select>
+                </label>
+                <button class="primary-action" type="submit">Опубликовать</button>
+              </form>
+            </section>
+
+            <section class="panel">
+              <div class="section-head">
+                <h2>Код Fortnite / CS2</h2>
+              </div>
+              <form class="admin-form" id="codeForm">
+                <label>Турнир <select name="tournamentId" id="codeTournamentSelect"></select></label>
+                <label>Новый код <input name="code" value="7844-2231-1290" required /></label>
+                <button class="primary-action" type="submit">Обновить код</button>
+              </form>
+            </section>
+
+            <section class="panel">
+              <div class="section-head">
+                <h2>Удалить турнир</h2>
+              </div>
+              <div class="admin-tournament-list" id="adminTournamentList"></div>
+            </section>
+
+            <section class="panel">
+              <div class="section-head">
+                <h2>Статистика игрока</h2>
+              </div>
+              <form class="admin-form" id="statsForm">
+                <label>Ник игрока <input name="nick" placeholder="например akkerman" required /></label>
+                <label>CS2 Rating <input name="cs2Rating" type="number" value="0" min="0" required /></label>
+                <label>Fortnite Points <input name="fortnitePoints" type="number" value="0" min="0" required /></label>
+                <label>Матчи <input name="matches" type="number" value="0" min="0" required /></label>
+                <label>Победы <input name="wins" type="number" value="0" min="0" required /></label>
+                <label>K/D <input name="kd" type="number" value="0" min="0" step="0.01" required /></label>
+                <label>MVP <input name="mvp" type="number" value="0" min="0" required /></label>
+                <button class="primary-action" type="submit">Сохранить статистику</button>
+              </form>
+            </section>
+
+            <section class="panel">
+              <div class="section-head">
+                <h2>Редактировать 2v2 матч</h2>
+              </div>
+              <form class="admin-form" id="bracketForm">
+                <label>Матч <select name="matchId" id="matchSelect"></select></label>
+                <label>Команда A <input name="teamA" value="akkerman & ghost" required /></label>
+                <label>Команда B <input name="teamB" value="qwerty & d3m0n" required /></label>
+                <label>Счет <input name="score" value="13 : 7" required /></label>
+                <label>
+                  Статус
+                  <select name="status">
+                    <option>Scheduled</option>
+                    <option>Live</option>
+                    <option>Finished</option>
+                  </select>
+                </label>
+                <button class="primary-action" type="submit">Сохранить матч</button>
+              </form>
+            </section>
+          </div>
+        </section>
+      </main>
+
+      <nav class="mobile-nav" aria-label="Мобильная навигация">
+        <button class="mobile-link active" data-view="dashboard">Главная</button>
+        <button class="mobile-link" data-view="tournaments">Турниры</button>
+        <button class="mobile-link" data-view="leaderboard">Рейтинг</button>
+        <button class="mobile-link" data-view="matches">Матчи</button>
+      </nav>
+    </div>
+
+    <div class="modal hidden" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <div class="modal-panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">ECS account</p>
+            <h2 id="authTitle">Вход / регистрация</h2>
+          </div>
+          <button class="icon-button" id="closeAuth" aria-label="Закрыть">x</button>
+        </div>
+        <form class="admin-form" id="accountForm">
+          <label>Ник в ECS <input name="nick" placeholder="Ваш игровой ник" required /></label>
+          <label>Пароль <input name="password" type="password" placeholder="Минимум 4 символа" minlength="4" required /></label>
+          <button class="primary-action" type="submit">Войти или создать аккаунт</button>
+          <p class="muted">Если ника ещё нет, аккаунт создастся автоматически. Если ник уже есть, будет выполнен вход по паролю.</p>
+        </form>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="data/mock-api.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
